@@ -12,19 +12,19 @@ NeuroSQL is modular: you can install only the components you need.
 #### Install for production/basic usage (core dependencies only):
 
 ```bash
-pip install neuroscql
+pip install neurosql
 ```
 
 #### Install with API support (FastAPI, uvicorn, pydantic):
 
 ```bash
-pip install neuroscql[api]
+pip install neurosql[api]
 ```
 
 #### Install for development (includes notebooks, testing, plotting, ML utilities):
 
 ```bash
-pip install neuroscql[dev,api]
+pip install neurosql[dev,api]
 ```
 
 #### For exact environment reproduction (e.g., full research replication):
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 **Python Example:**
 ```python
-from neuroscql import NeuroSQLModel
+from neurosql import NeuroSQLModel
 
 model = NeuroSQLModel.from_pretrained("0xV4h3/neurosql")
 sql = model.generate(
