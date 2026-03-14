@@ -1,0 +1,54 @@
+[project]
+name = "neurosql"
+version = "0.1.0"
+description = "NeuroSQL: neural Text-to-SQL generator with table context powered by T5 transformers."
+authors = [
+    { name = "Vahe Babayan (0xV4h3)", email = "vahe.babayan.dev@gmail.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["text-to-sql", "nl2sql", "sql", "neural", "transformer", "T5", "huggingface", "ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "datasets>=2.10.0",
+    "tqdm"
+]
+
+[project.optional-dependencies]
+api = [
+    "fastapi",
+    "uvicorn",
+    "pydantic"
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "notebook",
+    "ipykernel",
+    "jupyterlab",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn"
+]
+
+[project.urls]
+Homepage = "https://github.com/0xV4h3/neurosql"
+Repository = "https://github.com/0xV4h3/neurosql"
+Issues = "https://github.com/0xV4h3/neurosql/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["neurosql*"]

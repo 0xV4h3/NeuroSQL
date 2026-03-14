@@ -1,0 +1,129 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+env.bak/
+venv.bak/
+
+# PyCharm project files (except .idea/codeStyles)
+.idea/
+!.idea/codeStyles/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# pytest
+.cache/
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Cython debug symbols
+cython_debug/
+
+# Logs
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Other editors
+*.sublime-workspace
+*.sublime-project
+
+# Sphinx documentation
+docs/_build/
+
+# dotenv
+.env
+.env.*
+
+# Pycharm Workspace Storage
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/assetWizard.xml
+.idea/webServers.xml
+.idea/usage.statistics.xml
+.idea/markdown-navigator.xml
+.idea/markdown-navigator-settings.xml
+.idea/keymaps.xml
+.idea/inspectionProfiles/
+.idea/.name
+.idea/httpRequests/
+
+# Test result files
+test-results/
+
+# Model weights / checkpoints / large files
+*.pt
+*.h5
+*.ckpt
+*.bin
+checkpoints/
+weights/
+neurosql/model_weights/
+
+# Jupyter notebooks
+*.ipynb
+# Data
+data/
+datasets/
