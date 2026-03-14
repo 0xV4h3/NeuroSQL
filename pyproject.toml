@@ -1,7 +1,7 @@
 [project]
 name = "neurosql"
 version = "0.1.0"
-description = "NeuroSQL: neural Text-to-SQL generator with table context powered by T5 transformers."
+description = "NeuroSQL: Neural-powered Text-to-SQL generator."
 authors = [
     { name = "Vahe Babayan (0xV4h3)", email = "vahe.babayan.dev@gmail.com" }
 ]
