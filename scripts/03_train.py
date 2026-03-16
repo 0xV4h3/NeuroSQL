@@ -76,7 +76,7 @@ def merge_config_and_args(cfg: Dict[str, Any], args: argparse.Namespace) -> Dict
         "train_batch_size": 1,
         "eval_batch_size": 1,
         "grad_accum_steps": 16,
-        "save_steps": 200,
+        "save_steps": 400,
         "eval_steps": 400,
         "logging_steps": 20,
         "save_total_limit": 3,
@@ -144,7 +144,7 @@ def main():
         per_device_eval_batch_size=int(p["eval_batch_size"]),
         gradient_accumulation_steps=int(p["grad_accum_steps"]),
 
-        evaluation_strategy="steps",
+        eval_strategy="steps",
         eval_steps=int(p["eval_steps"]),
         save_strategy="steps",
         save_steps=int(p["save_steps"]),
