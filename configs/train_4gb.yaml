@@ -11,9 +11,9 @@ learning_rate: 5e-5
 warmup_ratio: 0.03
 max_grad_norm: 1.0
 
-train_batch_size: 1
+train_batch_size: 4
 eval_batch_size: 1
-grad_accum_steps: 16
+grad_accum_steps: 4
 
 save_steps: 400
 eval_steps: 400

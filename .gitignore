@@ -37,8 +37,22 @@ venv.bak/
 # VS Code
 .vscode/
 
+# HF / training artifacts
+models/
+data/
+neurosql/model_weights/
+*.safetensors
+*.bin
+*.pt
+*.pth
+trainer_state.json
+training_args.bin
+rng_state.pth
+events.out.tfevents*
+
 # Jupyter Notebook
 .ipynb_checkpoints
+.ipynb_checkpoints/
 
 # pyenv
 .python-version

@@ -79,9 +79,9 @@ def merge_config_and_args(cfg: Dict[str, Any], args: argparse.Namespace) -> Dict
         "warmup_ratio": 0.03,
         "max_grad_norm": 1.0,
 
-        "train_batch_size": 1,
+        "train_batch_size": 4,
         "eval_batch_size": 1,
-        "grad_accum_steps": 16,
+        "grad_accum_steps": 4,
 
         "save_steps": 400,
         "eval_steps": 400,
@@ -215,7 +215,7 @@ def main():
         save_total_limit=p["save_total_limit"],
         logging_steps=p["logging_steps"],
 
-        fp16=(device == "cuda"),
+        fp16=False,
         bf16=False,
         gradient_checkpointing=True,
         dataloader_num_workers=p["dataloader_num_workers"],
@@ -232,7 +232,7 @@ def main():
         args=training_args,
         train_dataset=tokenized["train"],
         eval_dataset=tokenized["validation"],
-        processing_class=tokenizer,  # new API
+        processing_class=tokenizer,
         data_collator=data_collator,
     )
 

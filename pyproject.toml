@@ -1,6 +1,6 @@
 [project]
 name = "neurosql"
-version = "0.1.0"
+version = "0.1.1"
 description = "NeuroSQL: Neural-powered Text-to-SQL generator."
 authors = [
     { name = "Vahe Babayan (0xV4h3)", email = "vahe.babayan.dev@gmail.com" }
@@ -19,7 +19,9 @@ dependencies = [
     "torch>=2.0.0",
     "transformers>=4.30.0",
     "datasets>=2.10.0",
-    "tqdm"
+    "tqdm",
+    "typer>=0.12.0",
+    "rich>=13.0.0"
 ]
 
 [project.optional-dependencies]
@@ -37,13 +39,19 @@ dev = [
     "numpy",
     "pandas",
     "matplotlib",
-    "scikit-learn"
+    "scikit-learn",
+    "build",
+    "twine"
 ]
 
 [project.urls]
 Homepage = "https://github.com/0xV4h3/neurosql"
 Repository = "https://github.com/0xV4h3/neurosql"
 Issues = "https://github.com/0xV4h3/neurosql/issues"
+
+[project.scripts]
+neurosql = "neurosql.cli:app"
+neurosql-api = "neurosql.api_cli:app"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
