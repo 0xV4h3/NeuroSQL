@@ -1,13 +1,15 @@
 model_name: google/flan-t5-small
 dataset_dir: data/t5_sql_dataset
 output_dir: models/t5_sql_finetuned
-final_export_dir: neurosql/model_weights
+final_export_dir: neuroscql/model_weights
 
-max_input_length: 256
+max_input_length: 192
 max_target_length: 128
 
-num_train_epochs: 3
-learning_rate: 2e-4
+num_train_epochs: 1
+learning_rate: 5e-5
+warmup_ratio: 0.03
+max_grad_norm: 1.0
 
 train_batch_size: 1
 eval_batch_size: 1
@@ -20,3 +22,7 @@ save_total_limit: 3
 
 seed: 42
 resume: auto
+dataloader_num_workers: 0
+
+max_train_samples: 80000
+max_eval_samples: 4000
