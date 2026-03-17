@@ -1,7 +1,7 @@
 model_name: google/flan-t5-small
 dataset_dir: data/t5_sql_dataset
 output_dir: models/t5_sql_finetuned
-final_export_dir: neuroscql/model_weights
+final_export_dir: neurosql/model_weights
 
 max_input_length: 192
 max_target_length: 128
