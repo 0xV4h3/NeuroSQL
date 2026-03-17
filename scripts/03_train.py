@@ -40,6 +40,7 @@ def parse_args():
     p.add_argument("--logging_steps", type=int, default=None)
     p.add_argument("--save_total_limit", type=int, default=None)
     p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--dataloader_num_workers", type=int, default=None)
     return p.parse_args()
 
 
@@ -52,9 +53,7 @@ def load_yaml_config(path: str) -> Dict[str, Any]:
 
 
 def merge_config_and_args(cfg: Dict[str, Any], args: argparse.Namespace) -> Dict[str, Any]:
-    # CLI > YAML
     final = dict(cfg)
-
     cli_dict = vars(args)
     for k, v in cli_dict.items():
         if k == "config":
@@ -62,7 +61,6 @@ def merge_config_and_args(cfg: Dict[str, Any], args: argparse.Namespace) -> Dict
         if v is not None:
             final[k] = v
 
-    # defaults if missing
     defaults = {
         "dataset_dir": "data/t5_sql_dataset",
         "output_dir": "models/t5_sql_finetuned",
@@ -76,15 +74,15 @@ def merge_config_and_args(cfg: Dict[str, Any], args: argparse.Namespace) -> Dict
         "train_batch_size": 1,
         "eval_batch_size": 1,
         "grad_accum_steps": 16,
-        "save_steps": 400,
+        "save_steps": 200,
         "eval_steps": 400,
         "logging_steps": 20,
         "save_total_limit": 3,
         "seed": 42,
+        "dataloader_num_workers": 0,
     }
     for k, v in defaults.items():
         final.setdefault(k, v)
-
     return final
 
 
@@ -105,7 +103,7 @@ def main():
     os.makedirs(os.path.dirname(p["final_export_dir"]), exist_ok=True)
 
     dataset = load_from_disk(p["dataset_dir"])
-    tokenizer = AutoTokenizer.from_pretrained(p["model_name"])
+    tokenizer = AutoTokenizer.from_pretrained(p["model_name"], use_fast=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(p["model_name"])
     model.gradient_checkpointing_enable()
 
@@ -136,6 +134,8 @@ def main():
         pad_to_multiple_of=8,
     )
 
+    use_fp16 = torch.cuda.is_available()
+
     training_args = Seq2SeqTrainingArguments(
         output_dir=p["output_dir"],
         num_train_epochs=float(p["num_train_epochs"]),
@@ -152,10 +152,10 @@ def main():
         logging_steps=int(p["logging_steps"]),
 
         predict_with_generate=False,
-        fp16=torch.cuda.is_available(),
+        fp16=use_fp16,
         bf16=False,
         gradient_checkpointing=True,
-        dataloader_num_workers=2,
+        dataloader_num_workers=int(p["dataloader_num_workers"]),
 
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
@@ -169,7 +169,7 @@ def main():
         args=training_args,
         train_dataset=tokenized["train"],
         eval_dataset=tokenized["validation"],
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         data_collator=data_collator,
     )
 
